@@ -28,7 +28,7 @@ def buscaDados(request):
             data1 = str(data)
             data = data.strftime('%m/%d/%Y')            
             data1 = data1.replace('-','')
-            print(data, data1)  
+            #print(data, data1)  
 
         except:
             return Response({"error": "O formato da data está incorreto ",
@@ -61,7 +61,7 @@ def buscaDados(request):
 
             #retorna a estrutura HTML da página
             pagina = BeautifulSoup(response.text, 'html.parser')
-            print(pagina)
+            #print(pagina)
         except requests.exceptions.RequestException as e:
             return Response({"msg":"Tempo de requisição excedido. Tente novamente!"},status=504)
 
@@ -77,7 +77,7 @@ def buscaDados(request):
             calendario = cabecalho[0].text.strip()
             taxaReferencia = cabecalho[1].text.strip()                              
             periodo = cabecalho[2].text.strip()
-            print(calendario, taxaReferencia,periodo)          
+            #print(calendario, taxaReferencia,periodo)          
             
             corpoTabela = pagina.find_all('td')
             #agrupando os dados para retorno da requisição
@@ -87,7 +87,7 @@ def buscaDados(request):
             taxaReferencia = cabecalho[1].text.strip()                              
             periodo = cabecalho[2].text.strip()
             periodoDois = cabecalho[3].text.strip()
-            print(calendario, taxaReferencia,periodo)           
+            #print(calendario, taxaReferencia,periodo)           
             corpoTabela = pagina.find_all('td')
             #agrupando os dados para retorno da requisição
             dados = fn.extrairDados(corpoTabela=corpoTabela,calendario=calendario,taxaReferencia=taxaReferencia,periodoUm=periodo,periodoDois=periodoDois)        
