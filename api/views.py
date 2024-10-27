@@ -97,7 +97,7 @@ def buscaDados(request):
         informacaoData = datetime.strptime(data1,'%Y%m%d').date() 
         dadosTaxa = {
             "Data": informacaoData,
-            "Dados da taxa de referência para o período":dados
+            "Dados":dados
         }
         
         return Response(dadosTaxa,status=200)
