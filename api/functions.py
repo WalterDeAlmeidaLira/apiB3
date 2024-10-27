@@ -1,14 +1,30 @@
-def extrairDados(corpoTabela,colunaUm,colunaDois):
-    #retorna os dados em formato de dicionário
-
-    dados =[]
+def extrairDados(corpoTabela,calendario,taxaReferencia,periodoUm,periodoDois=0):
     
-    for indice, linha in enumerate(corpoTabela):
-        if(indice % 2 == 0):
+    dados =[]
+
+    if(periodoDois == 0):
+        for indice, linha in enumerate(corpoTabela):
+            if(indice % 2 == 0):
+                dadosLinha = {
+                    calendario : corpoTabela[indice].text,
+                    "Taxa de Referencia": taxaReferencia,
+                    periodoUm : corpoTabela[indice+1].text
+                }
+                dados.append(dadosLinha)
+    else:        
+        for indice in range(0,len(corpoTabela),3):            
             dadosLinha = {
-                colunaUm : corpoTabela[indice].text,
-                colunaDois : corpoTabela[indice+1].text
+                calendario : corpoTabela[indice].text,
+                "Taxa de Referencia": taxaReferencia,
+                periodoUm : corpoTabela[indice+1].text,
+                periodoDois : corpoTabela[indice+2].text
             }
             dados.append(dadosLinha)
-
+        
+    
+    
     return dados
+
+    
+    
+    
